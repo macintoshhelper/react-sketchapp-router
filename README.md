@@ -14,4 +14,4 @@ React Sketch.app examples
 
 ## License
 
-[LICENSE.md](./LICENSE.md)
+[LICENSE.md](./LICENSE)
