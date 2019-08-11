@@ -1,0 +1,21 @@
+{
+  "name": "react-sketchapp-examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React Sketch.app examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macintoshhelper/react-sketchapp-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/macintoshhelper/react-sketchapp-examples/issues"
+  },
+  "homepage": "https://github.com/macintoshhelper/react-sketchapp-examples#readme"
+}
