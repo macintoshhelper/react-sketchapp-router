@@ -13,5 +13,11 @@ module.exports = function (config, isPluginCommand) {
   config.resolve = {
     ...config.resolve,
     extensions: [...config.resolve.extensions, '.jsx'],
+    alias: {
+      ...config.resolve.alias,
+      'react-sketchapp-router': path.resolve(__dirname, '../../'),
+      'react-sketchapp': path.resolve(__dirname, './node_modules/react-sketchapp/'),
+      'react': path.resolve(__dirname, './node_modules/react/'),
+    }
   };
 };

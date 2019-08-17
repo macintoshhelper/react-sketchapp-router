@@ -1,21 +1,36 @@
 {
-  "name": "react-sketchapp-examples",
-  "version": "1.0.0",
-  "private": true,
-  "description": "React Sketch.app examples",
-  "main": "index.js",
+  "name": "react-sketchapp-router",
+  "version": "0.0.1",
+  "description": "React Sketch.app router",
+  "main": "dist/bundle.esm.js",
+  "module": "dist/bundle.esm.js",
+  "sketch": "dist/bundle.esm.js",
   "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/macintoshhelper/react-sketchapp-examples.git"
+    "url": "git+https://github.com/macintoshhelper/react-sketchapp-router.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "macintoshhelper",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/macintoshhelper/react-sketchapp-examples/issues"
+    "url": "https://github.com/macintoshhelper/react-sketchapp-router/issues"
   },
-  "homepage": "https://github.com/macintoshhelper/react-sketchapp-examples#readme"
+  "homepage": "https://github.com/macintoshhelper/react-sketchapp-router#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "rollup": "^1.19.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  }
 }
