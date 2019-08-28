@@ -19,7 +19,7 @@ This is using a fork of `react-sketchapp` and exists as a proof of concept.
 Inside `react-sketchapp`'s `render argument, use this:
 
 ```js
-import { Router, Route, Link } from 'react-sketchapp-router';
+import { SketchRouter, Switch, Route, Link } from 'react-sketchapp-router';
 import { render, View, Text, Document, Page } from 'react-sketchapp';
 
 const Home = ({ location }) => (
@@ -41,10 +41,13 @@ const About = ({ location }) => (
 render(
   <Document>
     <Page name="App">
-      <Router history={{ location: '/' }} viewport={{ name: 'Mobile', width: 360, height: 640 }}>
-        <Route path="/" exact render={({ location }) => <Home /> } />
-        <Route path="/about" render={({ location }) => <About />} />
-      </Router>
+      <SketchRouter locations={['/', '/about', '/profile/jack']} viewport={{ name: 'Mobile', width: 360, height: 640 }}>
+        <Switch>
+          <Route path="/" exact render={({ location }) => <Home /> } />
+          <Route path="/about" render={({ location }) => <About />} />
+          <Route path="/profile/:user" render={({ location }) => <About />} />
+        </Switch>
+      </SketchRouter>
     </Page>
   </Document>
 )
