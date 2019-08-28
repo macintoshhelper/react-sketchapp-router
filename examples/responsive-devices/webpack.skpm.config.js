@@ -1,3 +1,5 @@
+/* eslint-disable func-names */
+
 const path = require('path');
 
 /**
@@ -16,8 +18,9 @@ module.exports = function (config, isPluginCommand) {
     alias: {
       ...config.resolve.alias,
       'react-sketchapp-router': path.resolve(__dirname, '../../'),
-      'react-sketchapp': path.resolve(__dirname, './node_modules/react-sketchapp/'),
+      'react-sketchapp': path.resolve(__dirname, '../../../forks/me/react-sketchapp/'),
       'react': path.resolve(__dirname, './node_modules/react/'),
+      'react-router': path.resolve(__dirname, './node_modules/react-router/'),
     }
   };
 };
