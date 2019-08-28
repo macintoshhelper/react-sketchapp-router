@@ -1,15 +1,29 @@
-import React from 'react';
-import { HotSpot } from 'react-sketchapp';
+// @flow
+import React, { type Config, type Node } from 'react';
+import { View } from 'react-sketchapp';
 
-import withRouter from './withRouter';
+import * as model from './model';
+import { withRouter } from './RouterContext';
 
-const Link = ({ viewport, to, children }) => {
+type Props = {|
+  viewport: model.Viewport,
+  to: string,
+  children: Node,
+|};
+
+const Link = ({ viewport, to, children }: Props) => {
+  if (typeof to !== 'string') {
+    return null;
+  }
+  if (Array.isArray(viewport) || !viewport) {
+    console.warn('Viewport is not valid. Please use Link inside of Routes');
+  }
 
   return (
-    <HotSpot flow={{ target: `${to.replace('/', '')}/${viewport.name}` }}>
+    <View flow={{ target: `${to}:${viewport.name.toLowerCase()}` }}>
       {children}
-    </HotSpot>
-  )
+    </View>
+  );
 };
 
-export default withRouter(Link);
+export default withRouter<Config<Props, {}>>(Link);

@@ -1,31 +1,81 @@
-import React from 'react';
+/* eslint-disable no-nested-ternary */
+// @flow
+import React, { type Config, type ComponentType } from 'react';
 import { Artboard } from 'react-sketchapp';
+import { matchPath } from 'react-router';
 
-import withRouter from './withRouter';
+import * as model from './model';
+import { RouterProvider, withRouter } from './RouterContext';
 
-const Route = ({ location, path, viewport, render }) => {
-  const { name: deviceName, width, height } = viewport
-  const id = `${path.replace('/', '')}/${deviceName}`;
+const isEmptyChildren = (children) => (React.Children.count(children) === 0);
 
-  const props = { location, path };
+type Props = {|
+  location: model.Location,
+  viewport: model.Viewport | model.Viewport[],
+  render: ({ [string]: mixed }) => ComponentType<mixed>,
+  component: ComponentType<mixed>,
+  path: string,
+  match: model.Match,
+  computedMatch: model.Match,
+  exact: boolean,
+  strict: boolean,
+  sensitive: boolean,
+  children: ({ [string]: mixed }) => ComponentType<mixed>,
+|};
 
-  let children;
+const Route = ({
+  location, exact, strict, sensitive, path, viewport,
+  render, component, computedMatch, match: contextMatch, ...otherProps
+}: Props) => {
+  const viewports: model.Viewport[] = Array.isArray(viewport) ? viewport : [viewport];
+  // const location = locations.find(location => (computedMatch || (path
+  //   ? matchPath(pathname, {
+  //     path, exact, strict, sensitive,
+  //   })
+  //   : contextMatch)));
+  
+  const { pathname } = location || {};
 
-  if (render && typeof render === 'function') {
-    children = render(props);
+
+  const match = computedMatch || (path
+    ? matchPath(pathname, {
+      path, exact, strict, sensitive,
+    })
+    : contextMatch);
+
+  const props = { location, path, match };
+
+  let { children } = otherProps;
+
+  if (children && typeof children === 'function') {
+    children = children(props);
   }
 
-  return (
-    <Artboard
-      id={id}
-      name={id}
-      isHome={/*location === id*/path === '/'}
-      style={{ width, minHeight: height }}
-      viewport={viewport}
-    >
-      {children}
-    </Artboard>
-  )
+  const childrenToRender = children && !isEmptyChildren(children)
+    ? children
+    : match
+      ? component
+        ? React.createElement(component, props)
+        : render
+          ? render(props)
+          : null
+      : null;
+
+  return viewports.map(({ name, width, height }) => ((childrenToRender !== null) ? (
+    <RouterProvider key={name} location={location} viewport={{ name, width, height }} match={match}>
+      <Artboard
+        id={`${path}:${name.toLowerCase()}`}
+        name={`${path}:${name.toLowerCase()}`}
+        isHome={path === '/'}
+        style={{
+          width, minHeight: height, marginRight: 70, marginBottom: 70,
+        }}
+        viewport={viewport}
+      >
+        {childrenToRender}
+      </Artboard>
+    </RouterProvider>
+  ) : null));
 };
 
-export default withRouter(Route);
+export default withRouter<Config<Props, {}>>(Route);

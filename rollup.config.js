@@ -7,7 +7,7 @@ import pkg from './package.json';
 
 export default [{
   input: './src/index.js',
-  external: ['react', 'react-sketchapp'],
+  external: ['react', 'react-sketchapp', 'react-router'],
   plugins: [
     json(),
     babel({
@@ -20,5 +20,5 @@ export default [{
   ],
   output: [
     { file: pkg.module, format: 'es' },
-  ]
+  ],
 }];

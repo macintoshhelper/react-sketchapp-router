@@ -52,7 +52,10 @@ render(
 
 
 
-## Credit
+## Inspiration and Code References
+  - [react-router](https://github.com/ReactTraining/react-router)
+    - MIT License
+    - Copyright (c) React Training 2016-2018
   - [react-sketchapp](https://github.com/airbnb/react-sketchapp)
     - MIT License
     - Copyright (c) 2018 Airbnb
