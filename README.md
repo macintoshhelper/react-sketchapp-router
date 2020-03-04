@@ -1,10 +1,7 @@
 # React Sketch.app Router
 
-Render your React app as a Sketch prototype. This is **in development** and **incomplete**, so the API is not final and we discourage use for production.
+Render your React app as a Sketch prototype. This is currently **in development**, so the API is not final and production use is discouraged until a stable release.
 
-This is using a fork of `react-sketchapp` and exists as a proof of concept.
-
-**The API is not final and will change!!!! This is a proof of concept!**
 
 ## Getting Started
 
@@ -12,7 +9,7 @@ This is using a fork of `react-sketchapp` and exists as a proof of concept.
 
 2. Install this package with `npm install --save react-sketchapp-router` and refer to `examples/responsive-devices` for an example.
 
-3. Install `react-sketchapp` and make sure to change the source of it to `github:macintoshhelper/react-sketchapp#build`, since this is using a fork of `react-sketchapp`.
+3. Install `react-sketchapp` and make sure to use the latest `@3` version.
 
 ## Example
 
@@ -41,17 +38,20 @@ const About = ({ location }) => (
 render(
   <Document>
     <Page name="App">
-      <SketchRouter locations={['/', '/about', '/profile/jack']} viewport={{ name: 'Mobile', width: 360, height: 640 }}>
+      <SketchRouter locations={['/profile/jack']} viewport={{ name: 'Mobile', width: 360, height: 640 }}>
         <Switch>
           <Route path="/" exact render={({ location }) => <Home /> } />
           <Route path="/about" render={({ location }) => <About />} />
           <Route path="/profile/:user" render={({ location }) => <About />} />
+          <Route render={() => <NotFound />}>
         </Switch>
       </SketchRouter>
     </Page>
   </Document>
 )
 ```
+
+Where `<SketchRouter locations={['/profile/jack']} ` is used to specify data for path params, e.g. `/profile/:user`.
 
 
 
