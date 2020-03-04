@@ -1,6 +1,6 @@
 {
   "name": "react-sketchapp-router",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React Sketch.app router",
   "main": "dist/bundle.esm.js",
   "module": "dist/bundle.esm.js",
