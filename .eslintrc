@@ -1,20 +1,13 @@
 {
   "extends": [
-    "airbnb",
-    "plugin:flowtype/recommended"
+    "airbnb"
   ],
   "plugins": [
-    "flowtype",
     "import"
   ],
   "rules": {
     "import/prefer-default-export": 0,
     "import/no-named-as-default": 0,
-    "flowtype/semi": "error",
-    "flowtype/delimiter-dangle": [
-      2,
-      "always-multiline"
-    ]
   },
   "settings": {
     "import/resolver": {
@@ -23,7 +16,7 @@
           ".js",
           ".jsx"
         ]
-      },
-    },
+      }
+    }
   }
 }

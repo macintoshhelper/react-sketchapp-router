@@ -1,18 +1,19 @@
-// @flow
-import * as React from 'react';
+import React, { createContext, ReactNode, ComponentType, FunctionComponent } from 'react';
 
 import * as model from './model';
 
-export type State = {|
+// import { Props as WithRouterProps } from './Route';
+
+export type State = {
   location: model.Location,
   locations?: model.Location[],
   match?: model.Match,
   viewport?: Object,
-|};
+};
 
 type Value = {
   state: State,
-  dispatch: ({ type: string, payload: Object }) => void,
+  dispatch: ({}: { type: string, payload: Object }) => void,
 };
 
 const initialState = {
@@ -21,14 +22,15 @@ const initialState = {
   },
 };
 
-export const RouterContext = React.createContext<Value>({
+export const RouterContext = createContext<Value>({
   state: initialState,
   dispatch: () => {},
 });
 
+
 export const RouterProvider = ({
   locations, location, viewport, match, children,
-}: { ...State, children: React.Node }) => {
+}: State & { children: ReactNode }) => {
   const state = { location, locations, viewport, match };
   const dispatch = () => {};
 
@@ -39,13 +41,10 @@ export const RouterProvider = ({
   );
 };
 
-export function withRouter<Config>(
-  Component: React.AbstractComponent<{|
-    ...Config,
-    ...State,
-  |}>,
-): React.AbstractComponent<Config> {
-  return (props: Config) => (
+type WithRouterProps = {}; // ???
+
+export const withRouter = <P extends WithRouterProps>(Component: ComponentType<P>): FunctionComponent<P>  => {
+  return (props: P) => (
     <RouterContext.Consumer>
       {(value) => {
         const { state } = value || {};

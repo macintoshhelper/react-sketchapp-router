@@ -1,11 +1,9 @@
-// @flow
 import * as model from './model';
 
 export const viewport: model.Viewport = {
   name: 'Mobile',
   width: 360,
   height: 640,
-  a123: 'a',
 };
 
 export const location: model.Location = {
@@ -16,5 +14,4 @@ export const location: model.Location = {
   state: {
     a: 'test',
   },
-  a123: '123',
 };

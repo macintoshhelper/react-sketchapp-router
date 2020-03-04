@@ -1,15 +1,15 @@
 // @flow
-import React, { type Config, type Node } from 'react';
+import React, { ReactNode } from 'react';
 import { View } from 'react-sketchapp';
 
 import * as model from './model';
 import { withRouter } from './RouterContext';
 
-type Props = {|
+interface Props {
   viewport: model.Viewport,
   to: string,
-  children: Node,
-|};
+  children: ReactNode,
+};
 
 const Link = ({ viewport, to, children }: Props) => {
   if (typeof to !== 'string') {
@@ -26,4 +26,4 @@ const Link = ({ viewport, to, children }: Props) => {
   );
 };
 
-export default withRouter<Config<Props, {}>>(Link);
+export default withRouter(Link);
