@@ -16,6 +16,7 @@
   "author": "macintoshhelper",
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-react": "^7.8.3",
     "@skpm/builder": "^0.4.0"
   },
   "dependencies": {

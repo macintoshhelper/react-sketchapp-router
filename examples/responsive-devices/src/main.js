@@ -1,25 +1,18 @@
+/* globals context */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-fragments */
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-filename-extension */
-import React, { Fragment, useContext } from 'react';
-import { render, Document, Page, View, Text } from 'react-sketchapp';
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import {
+  render, Document, Page, View, Text,
+} from 'react-sketchapp';
 
-import { SketchRouter, Route, Link, Switch } from 'react-sketchapp-router';
+import {
+  SketchRouter, Route, Link, Switch,
+} from 'react-sketchapp-router'; // eslint-disable-line
 
-import App from './App';
-
-const sizes = [{
-  name: 'Mobile', width: 360, height: 640,
-}, {
-  name: 'Tablet', width: 1024, height: 768,
-}, {
-  name: 'Desktop', width: 1280, height: 1024,
-}];
-
-const screensTotalWidth = sizes.reduce((acc, { width }) => {
-  acc += width + 70;
-
-  return acc;
-}, 0);
 
 const Home = () => (
   <View>
@@ -38,24 +31,27 @@ const About = () => (
     </Link>
   </View>
 );
-const Profile = ({ username }) => {
-  return (
-    <View>
-      <Fragment>
-        {username ? (
-          <Fragment>
-            <Text>{`Welcome ${username}!`}</Text>
-            <Link to="/">
-              <Text>Go to Home</Text>
-            </Link>
-          </Fragment>
-        ) : (
-          <Text>User not found</Text>
-        )}
-      </Fragment>
-    </View>
-  );
+const Profile = ({ username }) => (
+  <View>
+    <Fragment>
+      {username ? (
+        <Fragment>
+          <Text>{`Welcome ${username}!`}</Text>
+          <Link to="/">
+            <Text>Go to Home</Text>
+          </Link>
+        </Fragment>
+      ) : (
+        <Text>User not found</Text>
+      )}
+    </Fragment>
+  </View>
+);
+
+Profile.propTypes = {
+  username: PropTypes.string.isRequired,
 };
+
 const NotFound = () => (
   <View>
     <Text>404</Text>
@@ -86,13 +82,13 @@ export default () => {
     <Document>
       <Page name="App" style={{ flexDirection: 'row', flexWrap: 'wrap', maxWidth: pageWidth }}>
         <SketchRouter
-          locations={["/profile/jack", '/']}
+          locations={['/profile/john']}
           // locations={[['/'], ['/about'], ['/profile', { username: 'John' }]]}
           viewport={viewports}
         >
           <Switch>
-            <Route exact path="/" exact render={({ location }) => <Home /> } />
-            <Route path="/about" render={({ location }) => <About />} />
+            <Route exact path="/" render={() => <Home />} />
+            <Route path="/about" render={() => <About />} />
             <Route path="/profile/:username" render={({ match: { params } }) => <Profile {...params} />} />
             <Route component={NotFound} />
           </Switch>
