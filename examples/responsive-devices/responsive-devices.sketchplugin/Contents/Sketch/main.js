@@ -66365,7 +66365,7 @@ var Route = function () {
         },
         match: match
       }, _react2['default'].createElement(_reactSketchapp.Artboard, {
-        name: "".concat(path, ":").concat(name.toLowerCase()),
+        name: "".concat(path || '/not-found', ":").concat(name.toLowerCase()),
         isHome: path === '/',
         style: {
           width: width,

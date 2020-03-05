@@ -1,12 +1,16 @@
 {
   "name": "react-sketchapp-router",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "React Sketch.app router",
-  "main": "dist/bundle.esm.js",
-  "module": "dist/bundle.esm.js",
-  "sketch": "dist/bundle.esm.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/bundle.esm.js",
+  "module": "lib/bundle.esm.js",
+  "sketch": "lib/bundle.esm.js",
   "scripts": {
-    "build": "rollup -c",
+    "build:js": "rollup -c",
+    "build:types": "tsc -d true --emitDeclarationOnly --declarationDir lib",
+    "build": "npm run clean && npm run build:js && npm run build:types",
+    "clean": "rm -rf lib/",
     "dev": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
