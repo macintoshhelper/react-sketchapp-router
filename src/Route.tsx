@@ -38,7 +38,7 @@ const Route = ({
   
   const { pathname } = location || {};
 
-
+  
   const match = computedMatch || (path
     ? matchPath(pathname, {
       path, exact, strict, sensitive,
@@ -68,7 +68,7 @@ const Route = ({
       {viewports.map(({ name, width, height }) => ((childrenToRender !== null) ? (
       <RouterProvider key={name} location={location} viewport={{ name, width, height }} match={match}>
         <Artboard
-          name={`${path || '/not-found'}:${name.toLowerCase()}`}
+          name={`${pathname || path || '/not-found'}:${name.toLowerCase()}`}
           isHome={path === '/'}
           style={{
             width, minHeight: height, marginRight: 70, marginBottom: 70,
