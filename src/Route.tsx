@@ -73,7 +73,7 @@ const Route = ({
           style={{
             width, minHeight: height, marginRight: 70, marginBottom: 70,
           }}
-          viewport={viewport}
+          viewport={{ name, width, height }}
         >
           {childrenToRender}
         </Artboard>
