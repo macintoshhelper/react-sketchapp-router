@@ -25,7 +25,7 @@ const Router = ({ locations: locs, location: loc, viewport, children }: Props) =
   const location = typeof loc === 'string' ? createLocation(loc) : loc;
 
 
-  const match = computeRootMatch(locations.find(({ pathname }: { pathname: string }) => pathname).pathname || '/');
+  const match = computeRootMatch((locations.find(({ pathname }: { pathname: string }) => pathname) || {}).pathname || '/');
 
   return (
     <RouterProvider location={location} locations={locations} viewport={viewport} match={match}>
