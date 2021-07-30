@@ -9,7 +9,7 @@ import { RouterProvider, withRouter } from './RouterContext';
 
 const isEmptyChildren = (children: ReactNode) => (React.Children.count(children) === 0);
 
-type ComponentProps = { location: model.Location, path: string, match: model.Match };
+type ComponentProps = { location: model.Location, path: string, match: model.Match, viewport?: model.Viewport, breakpoint?: number };
 
 export interface Props {
   location: model.Location,
