@@ -14,7 +14,7 @@ const computeRootMatch = (pathname: string) => ({
 interface Props {
   location?: string | model.Location;
   locations?: string[] | model.Location[];
-  viewport: model.Viewport;
+  viewport: model.Viewport | model.Viewport[];
   children: ReactNode;
 };
 
