@@ -12,17 +12,17 @@ const isEmptyChildren = (children: ReactNode) => (React.Children.count(children)
 type ComponentProps = { location: model.Location, path: string, match: model.Match, viewport?: model.Viewport, breakpoint?: number };
 
 export interface Props {
-  location: model.Location,
-  viewport: model.Viewport | model.Viewport[],
-  render: (_: ComponentProps) => ReactNode,
-  component: ComponentClass<ComponentProps, {}>,
-  path: string,
-  match: model.Match,
-  computedMatch: model.Match,
-  exact: boolean,
-  strict: boolean,
-  sensitive: boolean,
-  children: ReactNode,
+  location?: model.Location,
+  viewport?: model.Viewport | model.Viewport[],
+  render?: (_: ComponentProps) => ReactNode,
+  component?: ComponentClass<ComponentProps, {}>,
+  path?: string,
+  match?: model.Match,
+  computedMatch?: model.Match,
+  exact?: boolean,
+  strict?: boolean,
+  sensitive?: boolean,
+  children?: ReactNode,
 };
 
 const Route = ({
