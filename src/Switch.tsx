@@ -9,8 +9,8 @@ import { withRouter, State } from './RouterContext';
 
 
 export interface Props {
-  locations: model.Location[];
-  match: model.Match;
+  locations?: model.Location[];
+  match?: model.Match;
   children: ReactNode;
 }
 
