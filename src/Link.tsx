@@ -6,7 +6,7 @@ import * as model from './model';
 import { withRouter } from './RouterContext';
 
 interface Props {
-  viewport: model.Viewport,
+  viewport?: model.Viewport,
   to: string,
   children: ReactNode,
 };
